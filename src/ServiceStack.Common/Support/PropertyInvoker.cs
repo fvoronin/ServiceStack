@@ -1,5 +1,7 @@
 ﻿using System;
+#if !NETCF
 using System.Linq.Expressions;
+#endif
 using System.Reflection;
 using ServiceStack.Text;
 
@@ -15,7 +17,7 @@ namespace ServiceStack.Common.Support
             var propertySetMethod = propertyInfo.SetMethod();
             if (propertySetMethod == null) return null;
 
-#if MONOTOUCH || SILVERLIGHT || XBOX
+#if MONOTOUCH || SILVERLIGHT || XBOX || NETCF
             return (o, convertedValue) =>
             {
                 propertySetMethod.Invoke(o, new[] { convertedValue });
@@ -39,7 +41,7 @@ namespace ServiceStack.Common.Support
             var getMethodInfo = propertyInfo.GetMethodInfo();
             if (getMethodInfo == null) return null;
 
-#if MONOTOUCH || SILVERLIGHT || XBOX
+#if MONOTOUCH || SILVERLIGHT || XBOX || NETCF
 #if NETFX_CORE
             return o => propertyInfo.GetMethod.Invoke(o, new object[] { });
 #else

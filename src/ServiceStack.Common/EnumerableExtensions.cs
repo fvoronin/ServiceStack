@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-#if WINDOWS_PHONE
+#if WINDOWS_PHONE || NETCF
 using ServiceStack.Text.WP;
 #endif
 

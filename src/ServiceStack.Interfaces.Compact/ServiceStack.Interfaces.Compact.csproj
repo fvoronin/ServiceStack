@@ -1,0 +1,208 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiceStack.Interfaces.Compact</RootNamespace>
+    <AssemblyName>ServiceStack.Interfaces.Compact</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
+    <OSVersion>5.2</OSVersion>
+    <DeployDirSuffix>ServiceStack.Interfaces.Compact</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETCF</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETCF</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\ServiceStack.Interfaces\CacheAccess\ISession.cs">
+      <Link>CacheAccess\ISession.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\DesignPatterns\Serialization\IStringDeserializer.cs">
+      <Link>Serialization\IStringDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\DesignPatterns\Serialization\IStringSerializer.cs">
+      <Link>Serialization\IStringSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\DesignPatterns\Serialization\ITextSerializer.cs">
+      <Link>Serialization\ITextSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\ILog.cs">
+      <Link>Logging\ILog.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\ILogFactory.cs">
+      <Link>Logging\ILogFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\LogManager.cs">
+      <Link>Logging\LogManager.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\Support\Logging\DebugLogFactory.cs">
+      <Link>Logging\Support\Logging\DebugLogFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\Support\Logging\DebugLogger.cs">
+      <Link>Logging\Support\Logging\DebugLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\Support\Logging\NullDebugLogger.cs">
+      <Link>Logging\Support\Logging\NullDebugLogger.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Logging\Support\Logging\NullLogFactory.cs">
+      <Link>Logging\Support\Logging\NullLogFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\EndpointAttributes.cs">
+      <Link>ServiceHost\EndpointAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\Feature.cs">
+      <Link>ServiceHost\Feature.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IContentTypeFilter.cs">
+      <Link>ServiceHost\IContentTypeFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IContentTypeReader.cs">
+      <Link>ServiceHost\IContentTypeReader.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IContentTypeWriter.cs">
+      <Link>ServiceHost\IContentTypeWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IFile.cs">
+      <Link>ServiceHost\IFile.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHasOptions.cs">
+      <Link>ServiceHost\IHasOptions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHasRequestFilter.cs">
+      <Link>ServiceHost\IHasRequestFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHasResponseFilter.cs">
+      <Link>ServiceHost\IHasResponseFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHttpError.cs">
+      <Link>ServiceHost\IHttpError.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHttpRequest.cs">
+      <Link>ServiceHost\IHttpRequest.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHttpResponse.cs">
+      <Link>ServiceHost\IHttpResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IHttpResult.cs">
+      <Link>ServiceHost\IHttpResult.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IRequestAttributes.cs">
+      <Link>ServiceHost\IRequestAttributes.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IRequestContext.cs">
+      <Link>ServiceHost\IRequestContext.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IResolver.cs">
+      <Link>ServiceHost\IResolver.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\IService.cs">
+      <Link>ServiceHost\IService.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceHost\RouteAttribute.cs">
+      <Link>ServiceHost\RouteAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceInterface.ServiceModel\ErrorResponse.cs">
+      <Link>ServiceModel\ErrorResponse.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceInterface.ServiceModel\IHasResponseStatus.cs">
+      <Link>ServiceModel\IHasResponseStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceInterface.ServiceModel\IResponseStatusConvertible.cs">
+      <Link>ServiceModel\IResponseStatusConvertible.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceInterface.ServiceModel\ResponseError.cs">
+      <Link>ServiceModel\ResponseError.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\ServiceInterface.ServiceModel\ResponseStatus.cs">
+      <Link>ServiceModel\ResponseStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IOneWayClient.cs">
+      <Link>Service\IOneWayClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IPartialWriter.cs">
+      <Link>Service\IPartialWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IReplyClient.cs">
+      <Link>Service\IReplyClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IResponseBase.cs">
+      <Link>Service\IResponseBase.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IResponseStatus.cs">
+      <Link>Service\IResponseStatus.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IRestClient.cs">
+      <Link>Service\IRestClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IServiceClient.cs">
+      <Link>Service\IServiceClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Interfaces\Service\IStreamWriter.cs">
+      <Link>Service\IStreamWriter.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System.Runtime.Serialization\DataContractAttribute.cs" />
+    <Compile Include="System.Runtime.Serialization\DataMemberAttribute.cs" />
+    <Compile Include="System.Runtime.Serialization\IgnoreDataMemberAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DesignPatterns\" />
+    <Folder Include="System.Net\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

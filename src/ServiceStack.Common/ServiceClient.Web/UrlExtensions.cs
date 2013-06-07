@@ -27,7 +27,15 @@ namespace ServiceStack.ServiceClient.Web
         private static readonly ConcurrentDictionary<Type, List<RestRoute>> routesCache =
             new ConcurrentDictionary<Type, List<RestRoute>>();
 
+#if NETCF
+        public static string ToUrl(this IReturn request, string httpMethod)
+        {
+            return ToUrl(request, httpMethod, null);
+        }
+        public static string ToUrl(this IReturn request, string httpMethod, string formatFallbackToPredefinedRoute)
+#else
         public static string ToUrl(this IReturn request, string httpMethod, string formatFallbackToPredefinedRoute = null)
+#endif
         {
             httpMethod = httpMethod.ToUpper();
 
@@ -97,7 +105,7 @@ namespace ServiceStack.ServiceClient.Web
             var restRoutes = requestType.AttributesOfType<RouteAttribute>()
                 .Select(attr => new RestRoute(requestType, attr.Path, attr.Verbs))
                 .ToList();
-#elif WINDOWS_PHONE || SILVERLIGHT
+#elif WINDOWS_PHONE || SILVERLIGHT || NETCF
             var restRoutes = requestType.AttributesOfType<RouteAttribute>()
                 .Select(attr => new RestRoute(requestType, attr.Path, attr.Verbs))
                 .ToList();
@@ -198,7 +206,11 @@ namespace ServiceStack.ServiceClient.Web
 
 	    public RestRoute(Type type, string path, string verbs)
         {
+#if !NETCF
             this.HttpMethods = (verbs ?? string.Empty).Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+#else
+            this.HttpMethods = (verbs ?? string.Empty).Split(new[] { ',', ' ' }).Where(s => !string.IsNullOrEmpty(s)).ToArray();
+#endif
             this.Type = type;
             this.Path = path;
 
@@ -332,6 +344,7 @@ namespace ServiceStack.ServiceClient.Web
                 result[propertyName.ToCamelCase()] = new PropertyRouteMember(propertyInfo);
             }
 
+#if !NETCF //TODO NETCF add JsConfig support
 			if (JsConfig.IncludePublicFields)
 			{
                 foreach (var fieldInfo in requestType.GetPublicFields())
@@ -344,7 +357,7 @@ namespace ServiceStack.ServiceClient.Web
 				}
 
 			}
-
+#endif
             return result;
         }
 

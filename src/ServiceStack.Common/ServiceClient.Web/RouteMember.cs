@@ -5,7 +5,12 @@ namespace ServiceStack.ServiceClient.Web
 {
 	internal abstract class RouteMember
 	{
+#if !NETCF
 		public abstract object GetValue(object target, bool excludeDefault = false);
+#else
+		public abstract object GetValue(object target);
+		public abstract object GetValue(object target, bool excludeDefault);
+#endif
 	}
 
 	internal class FieldRouteMember : RouteMember
@@ -23,6 +28,13 @@ namespace ServiceStack.ServiceClient.Web
 			if (excludeDefault && Equals(v, field.FieldType.GetDefaultValue())) return null;
 			return v;
 		}
+
+#if NETCF
+        public override object GetValue(object target)
+        {
+            return GetValue(target, false);
+        }
+#endif
 	}
 
 	internal class PropertyRouteMember : RouteMember
@@ -40,5 +52,12 @@ namespace ServiceStack.ServiceClient.Web
 			if (excludeDefault && Equals(v, property.PropertyType.GetDefaultValue())) return null;
 			return v;
 		}
+#if NETCF
+        public override object GetValue(object target)
+        {
+            return GetValue(target, false);
+        }
+#endif
+
 	}
 }

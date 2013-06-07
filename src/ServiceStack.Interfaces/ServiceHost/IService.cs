@@ -1,7 +1,4 @@
-﻿using System;
-using ServiceStack.Messaging;
-
-namespace ServiceStack.ServiceHost
+﻿namespace ServiceStack.ServiceHost
 {
     /// <summary>
     /// Marker interfaces

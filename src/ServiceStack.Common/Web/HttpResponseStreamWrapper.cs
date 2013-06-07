@@ -28,7 +28,9 @@ namespace ServiceStack.Common.Web
         public string ContentType { get; set; }
         public bool KeepOpen { get; set; }
 
+#if !NETCF
         public ICookies Cookies { get; set; }
+#endif
 
         public void AddHeader(string name, string value)
         {

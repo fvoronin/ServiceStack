@@ -47,33 +47,58 @@ namespace ServiceStack.ServiceClient.Web
             }
         }
 
+#if NETCF
+        public static WebResponse PostFileToUrl(this string url, FileInfo uploadFileInfo, string uploadFileMimeType)
+        {
+            return PostFileToUrl(url, uploadFileInfo, uploadFileMimeType, null, null);
+        }
+
+        public static WebResponse PostFileToUrl(this string url,
+            FileInfo uploadFileInfo, string uploadFileMimeType,
+            string acceptContentType,
+            Action<HttpWebRequest> requestFilter)
+#else
         public static WebResponse PostFileToUrl(this string url,
             FileInfo uploadFileInfo, string uploadFileMimeType,
             string acceptContentType = null,
             Action<HttpWebRequest> requestFilter = null)
+#endif
         {
             var webReq = (HttpWebRequest)WebRequest.Create(url);
             using (var fileStream = uploadFileInfo.OpenRead())
             {
                 var fileName = uploadFileInfo.Name;
 
-                webReq.UploadFile(fileStream, fileName, uploadFileMimeType, acceptContentType: acceptContentType, requestFilter: requestFilter, method: "POST");
+                webReq.UploadFile(fileStream, fileName, uploadFileMimeType,  acceptContentType, requestFilter, "POST");
             }
 
             return webReq.GetResponse();
         }
 
+#if NETCF
+        public static WebResponse PutFileToUrl(this string url, FileInfo uploadFileInfo, string uploadFileMimeType)
+        {
+            return PutFileToUrl(url, uploadFileInfo, uploadFileMimeType, null, null);
+        }
+
+        public static WebResponse PutFileToUrl(this string url,
+            FileInfo uploadFileInfo, string uploadFileMimeType,
+            string acceptContentType,
+            Action<HttpWebRequest> requestFilter)
+
+#else
         public static WebResponse PutFileToUrl(this string url,
             FileInfo uploadFileInfo, string uploadFileMimeType,
             string acceptContentType = null,
             Action<HttpWebRequest> requestFilter = null)
+#endif
         {
             var webReq = (HttpWebRequest)WebRequest.Create(url);
             using (var fileStream = uploadFileInfo.OpenRead())
             {
                 var fileName = uploadFileInfo.Name;
 
-                webReq.UploadFile(fileStream, fileName, uploadFileMimeType, acceptContentType: acceptContentType, requestFilter: requestFilter, method: "PUT");
+                webReq.UploadFile(fileStream, fileName, uploadFileMimeType, acceptContentType, requestFilter, "PUT");
             }
 
             return webReq.GetResponse();
@@ -92,8 +117,18 @@ namespace ServiceStack.ServiceClient.Web
             return webRequest.GetResponse();
         }
 
+#if NETCF
+        public static void UploadFile(this WebRequest webRequest, Stream fileStream, string fileName, string mimeType)
+        {
+            UploadFile(webRequest, fileStream, fileName, mimeType, null, null, "POST");
+        }
+
+        public static void UploadFile(this WebRequest webRequest, Stream fileStream, string fileName, string mimeType,
+            string acceptContentType, Action<HttpWebRequest> requestFilter, string method)
+#else
         public static void UploadFile(this WebRequest webRequest, Stream fileStream, string fileName, string mimeType,
             string acceptContentType = null, Action<HttpWebRequest> requestFilter = null, string method="POST")
+#endif
         {
             var httpReq = (HttpWebRequest)webRequest;
             httpReq.UserAgent = Env.ServerUserAgent;

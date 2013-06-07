@@ -23,7 +23,7 @@ namespace ServiceStack.Common
         /// </summary>
         /// <param name="enum"></param>
         /// <returns></returns>
-#if !NETFX_CORE
+#if !NETFX_CORE && !NETCF
         public static string ToDescription(this Enum @enum) 
         {
             var type = @enum.GetType();
@@ -45,7 +45,7 @@ namespace ServiceStack.Common
 
         public static List<string> ToList(this Enum @enum)
         {
-#if !(SILVERLIGHT4 || WINDOWS_PHONE)
+#if !(SILVERLIGHT4 || WINDOWS_PHONE || NETCF)
             return new List<string>(Enum.GetNames(@enum.GetType()));
 #else
             return @enum.GetType().GetFields(BindingFlags.Static | BindingFlags.Public).Select(fi => fi.Name).ToList();

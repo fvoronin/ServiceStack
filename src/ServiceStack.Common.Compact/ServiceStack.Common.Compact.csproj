@@ -1,0 +1,243 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ServiceStack.Common.Compact</RootNamespace>
+    <AssemblyName>ServiceStack.Common.Compact</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
+    <OSVersion>5.2</OSVersion>
+    <DeployDirSuffix>ServiceStack.Common.Compact</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETCF</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETCF</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="ServiceStack.Text.Compact, Version=1.0.4905.41469, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\.NETCF\ServiceStack.Text.Compact.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\ServiceStack.Common\AssertExtensions.cs">
+      <Link>AssertExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ByteArrayExtensions.cs">
+      <Link>ByteArrayExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\DictionaryExtensions.cs">
+      <Link>DictionaryExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Extensions\AssertExtensions.cs">
+      <Link>Extensions\AssertExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Extensions\ByteArrayExtensions.cs">
+      <Link>Extensions\ByteArrayExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Extensions\CollectionExtensions.cs">
+      <Link>Extensions\CollectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Extensions\DictionaryExtensions.cs">
+      <Link>Extensions\DictionaryExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Extensions\StringExtensions.cs">
+      <Link>Extensions\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Net30\ConcurrentDictionary.cs">
+      <Link>Net30\ConcurrentDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Net30\ConcurrentQueue.cs">
+      <Link>Net30\ConcurrentQueue.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Net30\ObjectPool.cs">
+      <Link>Net30\ObjectPool.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Net30\SplitOrderedList.cs">
+      <Link>Net30\SplitOrderedList.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Net30\Tuple.cs">
+      <Link>Net30\Tuple.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\AsyncServiceClient.cs">
+      <Link>ServiceClient.Web\AsyncServiceClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\ServiceClientBase.cs">
+      <Link>ServiceClient.Web\ServiceClientBase.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\WebServiceException.cs">
+      <Link>ServiceClient.Web\WebServiceException.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceModel\Validation\ValidationError.cs">
+      <Link>ServiceModel\Validation\ValidationError.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceModel\Validation\ValidationErrorField.cs">
+      <Link>ServiceModel\Validation\ValidationErrorField.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceModel\Validation\ValidationErrorResult.cs">
+      <Link>ServiceModel\Validation\ValidationErrorResult.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\StringExtensions.cs">
+      <Link>StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Utils\AssertUtils.cs">
+      <Link>Utils\AssertUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Utils\FuncUtils.cs">
+      <Link>Utils\FuncUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Utils\PerfUtils.cs">
+      <Link>Utils\PerfUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Utils\ReflectionUtils.cs">
+      <Link>Utils\ReflectionUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Utils\ResponseStatusUtils.cs">
+      <Link>Utils\ResponseStatusUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\CompressionTypes.cs">
+      <Link>Web\CompressionTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\ContentType.cs">
+      <Link>Web\ContentType.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\EndPoint.cs">
+      <Link>Web\EndPoint.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpError.cs">
+      <Link>Web\HttpError.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpHeaders.cs">
+      <Link>Web\HttpHeaders.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpMethods.cs">
+      <Link>Web\HttpMethods.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpResponseFilter.cs">
+      <Link>Web\HttpResponseFilter.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpResponseStreamWrapper.cs">
+      <Link>Web\HttpResponseStreamWrapper.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpResult.cs">
+      <Link>Web\HttpResult.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\HttpResultExtensions.cs">
+      <Link>Web\HttpResultExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\MimeTypes.cs">
+      <Link>Web\MimeTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Web\SerializationContext.cs">
+      <Link>Web\SerializationContext.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceStack.Interfaces.Compact\ServiceStack.Interfaces.Compact.csproj">
+      <Project>{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}</Project>
+      <Name>ServiceStack.Interfaces.Compact</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\ServiceStack.Common\EnumerableExtensions.cs">
+      <Link>EnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\EnumExtensions.cs">
+      <Link>EnumExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Extensions\EnumerableExtensions.cs">
+      <Link>Extensions\EnumerableExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\RequestContextExtensions.cs">
+      <Link>RequestContextExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\RouteMember.cs">
+      <Link>Web\RouteMember.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\UrlExtensions.cs">
+      <Link>Web\UrlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\WebRequestExtensions.cs">
+      <Link>ServiceClient.Web\WebRequestExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\WebRequestUtils.cs">
+      <Link>Web\WebRequestUtils.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceModel\Serialization\JsonDataContractDeserializer.cs">
+      <Link>ServiceModel\Serialization\JsonDataContractDeserializer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceModel\Serialization\JsonDataContractSerializer.cs">
+      <Link>ServiceModel\Serialization\JsonDataContractSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\StreamExtensions.cs">
+      <Link>StreamExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Support\AssignmentDefinition.cs">
+      <Link>Support\AssignmentDefinition.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Support\PropertyInvoker.cs">
+      <Link>Support\PropertyInvoker.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Utils\PathUtils.cs">
+      <Link>Utils\PathUtils.cs</Link>
+    </Compile>
+    <Compile Include="System.Diagnostics.DebuggerDisplayAttribute.cs" />
+    <Compile Include="System.ThreadStaticAttribute.cs" />
+    <Compile Include="Utils\ActivatorAssistant.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

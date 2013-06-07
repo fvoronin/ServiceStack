@@ -18,7 +18,9 @@ namespace ServiceStack.ServiceHost
 
         string ContentType { get; set; }
 
+#if !NETCF
         ICookies Cookies { get; }
+#endif
 
         void AddHeader(string name, string value);
 

@@ -11,7 +11,11 @@ namespace ServiceStack.Common.Utils
 #if !SILVERLIGHT 
             if (relativePath.StartsWith("~"))
             {
+#if !NETCF
                 var assemblyDirectoryPath = Path.GetDirectoryName(new Uri(typeof(PathUtils).Assembly.EscapedCodeBase).LocalPath);
+#else
+                var assemblyDirectoryPath = Path.GetDirectoryName(new Uri(typeof(PathUtils).Assembly.GetName().CodeBase).LocalPath);
+#endif
 
                 // Escape the assembly bin directory to the hostname directory
                 var hostDirectoryPath = appendPartialPathModifier != null

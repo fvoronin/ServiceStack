@@ -52,7 +52,9 @@ namespace ServiceStack.ServiceClient.Web
 
         public bool StoreCookies { get; set; }
 
+#if !NETCF
         public CookieContainer CookieContainer { get; set; }
+#endif
 
         /// <summary>
         /// The request filter is called before any request.
@@ -252,7 +254,7 @@ namespace ServiceStack.ServiceClient.Web
             }
         }
 
-#if !SILVERLIGHT
+#if !(SILVERLIGHT || NETCF)
         internal static void AllowAutoCompression(HttpWebRequest webRequest)
         {
             webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
@@ -300,13 +302,15 @@ namespace ServiceStack.ServiceClient.Web
 #else
             _webRequest = (HttpWebRequest)WebRequest.Create(requestUri);
 
+#if !NETCF
             if (StoreCookies)
             {
                 _webRequest.CookieContainer = CookieContainer;
             }
 #endif
+#endif
 
-#if !SILVERLIGHT
+#if !SILVERLIGHT && !NETCF
             if (!DisableAutoCompression)
             {
                 _webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
@@ -452,10 +456,12 @@ namespace ServiceStack.ServiceClient.Web
                     {
                         requestState.WebRequest = (HttpWebRequest)WebRequest.Create(requestState.Url);
 
+#if !NETCF
                         if (StoreCookies)
                         {
                             requestState.WebRequest.CookieContainer = CookieContainer;
                         }
+#endif
 
                         requestState.WebRequest.AddBasicAuth(this.UserName, this.Password);
 

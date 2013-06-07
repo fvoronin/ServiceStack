@@ -12,7 +12,9 @@ namespace ServiceStack.ServiceHost
 
 		string GetHeader(string headerName);
 
+#if !NETCF
 		IDictionary<string, Cookie> Cookies { get; }
+#endif
 
 		EndpointAttributes EndpointAttributes { get; }
 		

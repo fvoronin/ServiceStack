@@ -38,7 +38,14 @@ namespace ServiceStack.Common
         public static List<T> ConvertAll<T, K, V>(IDictionary<K, V> map, Func<K, V, T> createFn)
         {
             var list = new List<T>();
+#if !NETCF
             map.ForEach((kvp) => list.Add(createFn(kvp.Key, kvp.Value)));
+#else
+            foreach (var key in map.Keys)
+            {
+                list.Add(createFn(key, map[key]));
+            }
+#endif
             return list;
         }
 

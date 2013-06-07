@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Common.Compact", "ServiceStack.Common.Compact\ServiceStack.Common.Compact.csproj", "{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Interfaces.Compact", "ServiceStack.Interfaces.Compact\ServiceStack.Interfaces.Compact.csproj", "{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

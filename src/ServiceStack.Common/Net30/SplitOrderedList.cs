@@ -448,17 +448,27 @@ namespace ServiceStack.Net30.Collections.Concurrent
                 do {
                     while ((rwlock & (RwWrite | RwWait)) > 0)
                         sw.SpinOnce ();
-
+#if !NETCF
                     if ((Interlocked.Add (ref rwlock, RwRead) & (RwWait | RwWait)) == 0)
                         return;
 
                     Interlocked.Add (ref rwlock, -RwRead);
+#else
+                    if (((Interlocked.Exchange(ref rwlock, rwlock + RwRead) + RwRead) & (RwWait | RwWait)) == 0)
+                        return;
+
+                    Interlocked.Exchange(ref rwlock, rwlock - RwRead);
+#endif
                 } while (true);
             }
 
             public void ExitReadLock ()
             {
+#if !NETCF
                 Interlocked.Add (ref rwlock, -RwRead);
+#else
+                Interlocked.Exchange(ref rwlock, rwlock - RwRead);
+#endif
             }
 
             public void EnterWriteLock ()
@@ -482,7 +492,11 @@ namespace ServiceStack.Net30.Collections.Concurrent
 
             public void ExitWriteLock ()
             {
+#if !NETCF
                 Interlocked.Add (ref rwlock, -RwWrite);
+#else
+                Interlocked.Exchange(ref rwlock, rwlock - RwWrite);
+#endif
             }
         }
     }
@@ -490,6 +504,7 @@ namespace ServiceStack.Net30.Collections.Concurrent
 #if !NET_4_0
     internal struct SpinWait
     {
+#if !NETCF
         // The number of step until SpinOnce yield on multicore machine
         const           int  step = 10;
         const           int  maxTime = 200;
@@ -512,6 +527,9 @@ namespace ServiceStack.Net30.Collections.Concurrent
                     Thread.SpinWait (Math.Min (ntime, maxTime) << 1);
             }
         }
+#else
+        public void SpinOnce() { Thread.Sleep(0); }
+#endif
     }
 #endif
 }

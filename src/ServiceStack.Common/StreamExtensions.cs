@@ -11,7 +11,7 @@ namespace ServiceStack.Common
 {
     public static class StreamExtensions
     {
-#if !SILVERLIGHT && !XBOX && !MONOTOUCH
+#if !SILVERLIGHT && !XBOX && !MONOTOUCH && !NETCF
         /// <summary>
         /// Compresses the specified text using the default compression method: Deflate
         /// </summary>

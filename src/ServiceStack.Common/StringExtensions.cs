@@ -191,7 +191,11 @@ namespace ServiceStack.Common
         {
             if (String.IsNullOrEmpty(text)) return false;
             int ret;
+#if !NETCF
             return Int32.TryParse(text, out ret);
+#else
+            return ServiceStack.Text.ParseAssistant.TryParse(text, out ret);
+#endif
         }
 
         public static int ToInt(this string text)
@@ -202,7 +206,11 @@ namespace ServiceStack.Common
         public static int ToInt(this string text, int defaultValue)
         {
             int ret;
+#if !NETCF
             return Int32.TryParse(text, out ret) ? ret : defaultValue;
+#else
+            return ServiceStack.Text.ParseAssistant.TryParse(text, out ret) ? ret : defaultValue;
+#endif
         }
 
         public static long ToInt64(this string text)
@@ -213,7 +221,11 @@ namespace ServiceStack.Common
         public static long ToInt64(this string text, long defaultValue)
         {
             long ret;
+#if !NETCF
             return Int64.TryParse(text, out ret) ? ret : defaultValue;
+#else
+            return ServiceStack.Text.ParseAssistant.TryParse(text, out ret) ? ret : defaultValue;
+#endif
         }
 
         public static bool Glob(this string value, string pattern)

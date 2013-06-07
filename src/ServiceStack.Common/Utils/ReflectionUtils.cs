@@ -106,8 +106,8 @@ namespace ServiceStack.Common.Utils
                     FromType = fromType,
                 };
 
-                var readMap = GetMembers(fromType, isReadable: true);
-                var writeMap = GetMembers(toType, isReadable: false);
+                var readMap = GetMembers(fromType, /* isReadable: */ true);
+                var writeMap = GetMembers(toType, /* isReadable: */ false);
 
                 foreach (var assignmentMember in readMap)
                 {
@@ -324,7 +324,7 @@ namespace ServiceStack.Common.Utils
 
             if (type.IsEnum())
             {
-#if SILVERLIGHT4 || WINDOWS_PHONE
+#if SILVERLIGHT4 || WINDOWS_PHONE || NETCF
                 return Enum.ToObject(type, 0);
 #else
                 return Enum.GetValues(type).GetValue(0);
@@ -344,7 +344,11 @@ namespace ServiceStack.Common.Utils
                 if (type.IsGeneric() && type.GenericTypeDefinition() == typeof(KeyValuePair<,>))
                 {
                     var genericTypes = type.GenericTypeArguments();
+#if !NETCF
                     var valueType = Activator.CreateInstance(type, CreateDefaultValue(genericTypes[0], recursionInfo), CreateDefaultValue(genericTypes[1], recursionInfo));
+#else
+                    var valueType = ActivatorAssistant.CreateInstance(type, CreateDefaultValue(genericTypes[0], recursionInfo), CreateDefaultValue(genericTypes[1], recursionInfo));
+#endif
                     return PopulateObjectInternal(valueType, recursionInfo);
                 }
 
@@ -391,7 +395,7 @@ namespace ServiceStack.Common.Utils
             var genericCollectionType =
                 type.GetTypeInfo().ImplementedInterfaces
                     .FirstOrDefault(t => t.GetTypeInfo().IsGenericType && t.GetGenericTypeDefinition() == typeof (ICollection<>));
-#elif WINDOWS_PHONE || SILVERLIGHT
+#elif WINDOWS_PHONE || SILVERLIGHT || NETCF
             var genericCollectionType =
                 type.GetInterfaces()
                     .FirstOrDefault(t => t.IsGenericType && t.GetGenericTypeDefinition() == typeof (ICollection<>));

@@ -62,6 +62,9 @@ namespace ServiceStack.Common.Support
 #if NETFX_CORE
                 return (PropertyGetterDelegate)
                     MethodInfo.CreateDelegate(typeof(PropertyGetterDelegate));
+#elif NETCF
+                return (PropertyGetterDelegate)
+                    Delegate.CreateDelegate(typeof(PropertyGetterDelegate), null, MethodInfo);
 #else
                 return (PropertyGetterDelegate)
                     Delegate.CreateDelegate(typeof(PropertyGetterDelegate), MethodInfo);

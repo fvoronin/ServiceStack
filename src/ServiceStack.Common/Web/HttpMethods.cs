@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ServiceStack.ServiceHost;
-#if WINDOWS_PHONE && !WP
+#if (WINDOWS_PHONE || NETCF) && !WP
 using ServiceStack.Text.WP;
 #endif
 

@@ -52,8 +52,16 @@ namespace ServiceStack.Common.Web
         public HttpResult(FileInfo fileResponse, bool asAttachment)
             : this(fileResponse, MimeTypes.GetMimeType(fileResponse.Name), asAttachment) { }
 
+#if NETCF
+        public HttpResult(FileInfo fileResponset)
+            : this(fileResponset, null, false) { }
+
+            public HttpResult(FileInfo fileResponse, string contentType, bool asAttachment)
+            : this(null, contentType ?? MimeTypes.GetMimeType(fileResponse.Name), HttpStatusCode.OK)
+#else
         public HttpResult(FileInfo fileResponse, string contentType=null, bool asAttachment=false)
             : this(null, contentType ?? MimeTypes.GetMimeType(fileResponse.Name), HttpStatusCode.OK)
+#endif
         {
             this.FileInfo = fileResponse;
             this.AllowsPartialResponse = true;
@@ -64,9 +72,16 @@ namespace ServiceStack.Common.Web
                 "attachment; " +
                 "filename=\"" + fileResponse.Name + "\"; " +
                 "size=" + fileResponse.Length + "; " +
+#if !NETCF
                 "creation-date=" + fileResponse.CreationTimeUtc.ToString("R").Replace(",", "") + "; " +
                 "modification-date=" + fileResponse.LastWriteTimeUtc.ToString("R").Replace(",", "") + "; " +
-                "read-date=" + fileResponse.LastAccessTimeUtc.ToString("R").Replace(",", "");
+                "read-date=" + fileResponse.LastAccessTimeUtc.ToString("R").Replace(",", "")
+#else
+                "creation-date=" + fileResponse.CreationTime.ToUniversalTime().ToString("R").Replace(",", "") + "; " +
+                "modification-date=" + fileResponse.LastWriteTime.ToUniversalTime().ToString("R").Replace(",", "") + "; " +
+                "read-date=" + fileResponse.LastAccessTime.ToUniversalTime().ToString("R").Replace(",", "")
+#endif
+                ;
 
             this.Headers = new Dictionary<string, string> {
                 { HttpHeaders.ContentDisposition, headerValue },
@@ -321,7 +336,15 @@ namespace ServiceStack.Common.Web
             };
         }
 
+#if NETCF
+        public static HttpResult Redirect(string newLocationUri)
+        {
+            return Redirect(newLocationUri, HttpStatusCode.Found);
+        }
+        public static HttpResult Redirect(string newLocationUri, HttpStatusCode redirectStatus)
+#else
         public static HttpResult Redirect(string newLocationUri, HttpStatusCode redirectStatus = HttpStatusCode.Found)
+#endif
         {
             return new HttpResult
             {

@@ -27,10 +27,12 @@ namespace ServiceStack.Common.Web
             get { throw new NotImplementedException(); }
         }
 
+#if !NETCF
         public IDictionary<string, System.Net.Cookie> Cookies
         {
             get { return new Dictionary<string, System.Net.Cookie>(); }
         }
+#endif
 
         public EndpointAttributes EndpointAttributes
         {

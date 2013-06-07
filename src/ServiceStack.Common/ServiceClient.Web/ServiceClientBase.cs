@@ -115,7 +115,9 @@ namespace ServiceStack.ServiceClient.Web
                 LocalHttpWebRequestFilter = this.LocalHttpWebRequestFilter,
                 LocalHttpWebResponseFilter = this.LocalHttpWebResponseFilter
             };
+#if !NETCF
             this.CookieContainer = new CookieContainer();
+#endif
             this.StoreCookies = true; //leave
 #if NETFX_CORE || WINDOWS_PHONE || SILVERLIGHT
             this.Headers = new Dictionary<string, string>();
@@ -320,12 +322,14 @@ namespace ServiceStack.ServiceClient.Web
             set { asyncClient.StoreCookies = storeCookies = value; }
         }
 
+#if !NETCF
         private CookieContainer _cookieContainer;
         public CookieContainer CookieContainer
         {
             get { return _cookieContainer; }
             set { asyncClient.CookieContainer = _cookieContainer = value; }
         }
+#endif
 
         private bool allowAutoRedirect = true;
         public bool AllowAutoRedirect
@@ -636,17 +640,19 @@ namespace ServiceStack.ServiceClient.Web
 					if (this.AlwaysSendBasicAuthHeader) client.AddBasicAuth(this.UserName, this.Password);
 				}
 
+#if !NETCF
                 if (!DisableAutoCompression)
                 {
                     client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
                     client.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
                 }
-
+#endif
+#if !NETCF
                 if (StoreCookies)
                 {
                     client.CookieContainer = CookieContainer;
                 }
-
+#endif
                 client.AllowAutoRedirect = AllowAutoRedirect;
 
                 ApplyWebRequestFilters(client);
@@ -1022,7 +1028,7 @@ namespace ServiceStack.ServiceClient.Web
                 var webRequest = PrepareWebRequest(HttpMethods.Post, requestUri, null, null);
 
                 var queryString = QueryStringSerializer.SerializeToString(request);
-#if !MONOTOUCH
+#if !MONOTOUCH && !NETCF
                 var nameValueCollection = HttpUtility.ParseQueryString(queryString);
 #endif
                 var boundary = DateTime.UtcNow.Ticks.ToString(CultureInfo.InvariantCulture);
@@ -1031,7 +1037,7 @@ namespace ServiceStack.ServiceClient.Web
                 var newLine = Environment.NewLine;
                 using (var outputStream = webRequest.GetRequestStream())
                 {
-#if !MONOTOUCH
+#if !MONOTOUCH && !NETCF
                     foreach (var key in nameValueCollection.AllKeys)
                     {
                         outputStream.Write(boundary + newLine);
@@ -1123,7 +1129,11 @@ namespace ServiceStack.ServiceClient.Web
 
             if (typeof(TResponse) == typeof(HttpWebResponse) && (webResponse is HttpWebResponse))
             {
+#if !NETCF
                 return (TResponse)Convert.ChangeType(webResponse, typeof(TResponse));
+#else
+                return (TResponse)Convert.ChangeType(webResponse, typeof(TResponse), CultureInfo.InvariantCulture);
+#endif
             }
             if (typeof(TResponse) == typeof(Stream)) //Callee Needs to dispose manually
             {
