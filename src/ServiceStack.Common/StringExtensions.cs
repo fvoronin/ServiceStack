@@ -55,6 +55,13 @@ namespace ServiceStack.Common
 #endif
         }
 
+#if NETCF
+        public static string ToLowerInvariant(this string value)
+        {
+            return value.ToLower(CultureInfo.InvariantCulture);
+        }
+#endif
+
         public static string ToEnglish(this string camelCase)
         {
             var ucWords = camelCase.SplitCamelCase().ToLower();

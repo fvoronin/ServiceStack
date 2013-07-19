@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Threading;
-using Funq;
-using ServiceStack.Common.Extensions;
 using ServiceStack.Common.Web;
-using ServiceStack.Configuration;
 using ServiceStack.DataAnnotations;
 using ServiceStack.Logging;
 using ServiceStack.Logging.Support.Logging;
-using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.Sqlite;
-using ServiceStack.Plugins.ProtoBuf;
 using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.ServiceModel;
 using ServiceStack.Text;
+#if !NETCF
+using Funq;
+using ServiceStack.Common.Extensions;
+using ServiceStack.Configuration;
+using ServiceStack.OrmLite;
+using ServiceStack.OrmLite.Sqlite;
+using ServiceStack.Plugins.ProtoBuf;
 using ServiceStack.WebHost.Endpoints.Tests.IntegrationTests;
 using ServiceStack.WebHost.Endpoints.Tests.Support.Operations;
+#else
+using ServiceStack.Common;
+#endif
 
 namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 {
@@ -61,6 +65,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 		public ResponseStatus ResponseStatus { get; set; }
 	}
 
+#if !NETCF
 	public class AlwaysThrowsService : ServiceInterface.Service
 	{
 	    public object Any(AlwaysThrows request)
@@ -68,7 +73,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 			throw new ArgumentException("This service always throws an error");
 		}
 	}
-
+#endif
 
 	[Route("/movies", "POST,PUT")]
 	[Route("/movies/{Id}")]
@@ -141,7 +146,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 		public Movie Movie { get; set; }
 	}
 
-
+#if !NETCF
     public class MovieService : ServiceInterface.Service
 	{
 		public IDbConnectionFactory DbFactory { get; set; }
@@ -195,7 +200,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 			return new MovieResponse();
 		}
 	}
-
+#endif
 
 	[DataContract]
 	[Route("/movies", "GET")]
@@ -221,6 +226,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 		public List<Movie> Movies { get; set; }
 	}
 
+#if !NETCF
     public class MoviesService : ServiceInterface.Service
 	{
 		/// <summary>
@@ -238,6 +244,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 			return response;
 		}
 	}
+#endif
 
 	public class MoviesZip
 	{
@@ -255,6 +262,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 		public List<Movie> Movies { get; set; }
 	}
 
+#if !NETCF
     public class MoviesZipService : ServiceInterface.Service
 	{
 		public IDbConnectionFactory DbFactory { get; set; }
@@ -275,7 +283,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 			return RequestContext.ToOptimizedResult(response);
 		}
 	}
-
+#endif
 
 	[DataContract]
 	[Route("/reset-movies")]
@@ -294,6 +302,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 		public ResponseStatus ResponseStatus { get; set; }
 	}
 
+#if !NETCF
 	public class ResetMoviesService : ServiceInterface.Service
 	{
 		public static List<Movie> Top5Movies = new List<Movie>
@@ -314,6 +323,19 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
 			return new ResetMoviesResponse();
 		}
 	}
+#else
+    public class ResetMoviesService
+    {
+        public static List<Movie> Top5Movies = new List<Movie>
+		{
+			new Movie { ImdbId = "tt0111161", Title = "The Shawshank Redemption", Rating = 9.2m, Director = "Frank Darabont", ReleaseDate = new DateTime(1995,2,17), TagLine = "Fear can hold you prisoner. Hope can set you free.", Genres = new List<string>{"Crime","Drama"}, },
+			new Movie { ImdbId = "tt0068646", Title = "The Godfather", Rating = 9.2m, Director = "Francis Ford Coppola", ReleaseDate = new DateTime(1972,3,24), TagLine = "An offer you can't refuse.", Genres = new List<string> {"Crime","Drama", "Thriller"}, },
+			new Movie { ImdbId = "tt1375666", Title = "Inception", Rating = 9.2m, Director = "Christopher Nolan", ReleaseDate = new DateTime(2010,7,16), TagLine = "Your mind is the scene of the crime", Genres = new List<string>{"Action", "Mystery", "Sci-Fi", "Thriller"}, },
+			new Movie { ImdbId = "tt0071562", Title = "The Godfather: Part II", Rating = 9.0m, Director = "Francis Ford Coppola", ReleaseDate = new DateTime(1974,12,20), Genres = new List<string> {"Crime","Drama", "Thriller"}, },
+			new Movie { ImdbId = "tt0060196", Title = "The Good, the Bad and the Ugly", Rating = 9.0m, Director = "Sergio Leone", ReleaseDate = new DateTime(1967,12,29), TagLine = "They formed an alliance of hate to steal a fortune in dead man's gold", Genres = new List<string>{"Adventure","Western"}, },
+		};
+    }
+#endif
 
 	[DataContract]
 	public class GetHttpResult { }
@@ -355,6 +377,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
         public string PageElementResponse { get; set; }
     }
 
+#if !NETCF
     public class InboxPostResponseRequestService : ServiceInterface.Service
     {
         public object Any(InboxPostResponseRequest request)
@@ -369,6 +392,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
             };
         }
     }
+#endif
 
     [Route("/inbox/{Id}/responses", "GET, PUT, OPTIONS")]
     public class InboxPost
@@ -377,6 +401,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
         public int Id { get; set; }
     }
 
+#if !NETCF
     public class InboxPostService : ServiceInterface.Service
     {
         public object Any(InboxPost request)
@@ -387,7 +412,9 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
             return null;
         }
     }
+#endif
 
+#if !NETCF
     [DataContract]
     [Route("/long_running")]
     public class LongRunning { }
@@ -543,5 +570,5 @@ namespace ServiceStack.WebHost.Endpoints.Tests.Support.Host
             Plugins.Add(new RequestInfoFeature());
         }
     }
-
+#endif
 }

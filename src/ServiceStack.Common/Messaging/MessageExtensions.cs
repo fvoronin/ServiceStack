@@ -11,7 +11,7 @@ namespace ServiceStack.Messaging
     {
         public static string ToString(byte[] bytes)
         {
-#if !SILVERLIGHT 
+#if !SILVERLIGHT && !NETCF
             return System.Text.Encoding.UTF8.GetString(bytes);
 #else
             return System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length);

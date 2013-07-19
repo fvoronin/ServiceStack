@@ -15,7 +15,7 @@ using ServiceStack.WebHost.Endpoints.Tests.Support.Host;
 namespace ServiceStack.WebHost.Endpoints.Tests
 {
     [TestFixture]
-    class AppHostHttpListenerLongRunningBaseTests
+    public class AppHostHttpListenerLongRunningBaseTests
     {
         private const string ListeningOn = "http://localhost:82/";
         ExampleAppHostHttpListenerLongRunning appHost;

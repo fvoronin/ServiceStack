@@ -28,6 +28,11 @@ namespace ServiceStack.Messaging
             var mi = genericMessageType.GetRuntimeMethods().First(p => p.Name.Equals("Create"));
             factoryFn = (MessageFactoryDelegate)mi.CreateDelegate(
                 typeof(MessageFactoryDelegate));
+#elif NETCF
+            var mi = genericMessageType.GetMethod("Create",
+                BindingFlags.Public | BindingFlags.Static);
+            factoryFn = (MessageFactoryDelegate)Delegate.CreateDelegate(
+                typeof(MessageFactoryDelegate), null, mi);
 #else
             var mi = genericMessageType.GetMethod("Create",
                 BindingFlags.Public | BindingFlags.Static);

@@ -6,7 +6,7 @@ using ServiceStack.ServiceHost;
 namespace ServiceStack.ServiceClient.Web
 {
 
-#if SILVERLIGHT || MONOTOUCH || XBOX
+#if SILVERLIGHT || MONOTOUCH || XBOX || NETCF
 
     public class Soap11ServiceClient : IServiceClient
     {
@@ -95,6 +95,16 @@ namespace ServiceStack.ServiceClient.Web
         }
 
         public TResponse Send<TResponse>(object request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TResponse Send<TResponse>(IReturn<TResponse> request)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Send(IReturnVoid request)
         {
             throw new NotImplementedException();
         }

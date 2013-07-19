@@ -20,7 +20,17 @@ namespace ServiceStack.Common
 
         public static List<To> SafeConvertAll<To, From>(this IEnumerable<From> items, Func<From, To> converter)
         {
-            return items == null ? new List<To>() : Extensions.EnumerableExtensions.ConvertAll(items, converter);
+            return items == null ? new List<To>() : ConvertAll(items, converter);
+        }
+
+        private static List<To> ConvertAll<To, From>(IEnumerable<From> items, Func<From, To> converter)
+        {
+            var list = new List<To>();
+            foreach (var item in items)
+            {
+                list.Add(converter(item));
+            }
+            return list;
         }
 
         public static List<object> ToObjects<T>(this IEnumerable<T> items)

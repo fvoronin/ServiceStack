@@ -42,6 +42,7 @@ namespace ServiceStack.Logging.Support.Logging {
         /// <summary>
         /// Logs the specified message.
         /// </summary>
+        /// <param name="level">The logging level.</param>
         /// <param name="message">The message.</param>
         /// <param name="exception">The exception.</param>
         private static void Log(Levels level, object message, Exception exception) {
@@ -55,6 +56,7 @@ namespace ServiceStack.Logging.Support.Logging {
         /// <summary>
         /// Logs the format.
         /// </summary>
+        /// <param name="level">The logging level.</param>
         /// <param name="message">The message.</param>
         /// <param name="args">The args.</param>
         private static void LogFormat(Levels level, object message, params object[] args) {
@@ -65,6 +67,7 @@ namespace ServiceStack.Logging.Support.Logging {
         /// <summary>
         /// Logs the specified message.
         /// </summary>
+        /// <param name="level">The logging level.</param>
         /// <param name="message">The message.</param>
         private static void Log(Levels level, object message) {
             string msg = message == null ? string.Empty : message.ToString();

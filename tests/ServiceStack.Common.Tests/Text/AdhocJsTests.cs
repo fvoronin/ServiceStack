@@ -43,7 +43,11 @@ namespace ServiceStack.Common.Tests.Text
 		[Test]
 		public void Can_Serialize_Array_with_nulls()
 		{
+#if NETCF
+            using (JsConfig.With(null, null, /*includeNullValues*/ true, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null))
+#else
             using (JsConfig.With(includeNullValues:true))
+#endif
             {
                 var t = new {
                     Name = "MyName",

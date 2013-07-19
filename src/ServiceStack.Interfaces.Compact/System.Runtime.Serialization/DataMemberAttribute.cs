@@ -28,8 +28,7 @@
 
 namespace System.Runtime.Serialization
 {
-	[AttributeUsage (AttributeTargets.Property | AttributeTargets.Field,
-		Inherited = false, AllowMultiple = false)]
+	[AttributeUsage (AttributeTargets.Property | AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
 	public sealed class DataMemberAttribute : Attribute
 	{
 		bool is_required;

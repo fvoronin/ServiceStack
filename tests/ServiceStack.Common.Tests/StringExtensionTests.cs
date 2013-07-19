@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using NUnit.Framework;
-using ServiceStack.Common.Extensions;
 using ServiceStack.Text;
+#if !NETCF
+using ServiceStack.Common.Extensions;
+#endif
 
 namespace ServiceStack.Common.Tests
 {
@@ -38,7 +40,11 @@ namespace ServiceStack.Common.Tests
 			const string url = "http://www.servicestack.net/a?b=c&d=f";
 			var urlEncoded = url.UrlEncode();
 
+#if !NETCF
 			Assert.That(urlEncoded, Is.EqualTo(HttpUtility.UrlEncode(url)));
+#else
+            Assert.That(urlEncoded.ToLower(), Is.EqualTo(Uri.EscapeDataString(url).ToLower()));
+#endif
 		}
 
 		[Test]

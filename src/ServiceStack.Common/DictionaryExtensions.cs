@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if !NETCF
 using ServiceStack.Common.Extensions;
+#endif
+using ServiceStack.Common;
 
 namespace ServiceStack.Common
 {

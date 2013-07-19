@@ -83,7 +83,15 @@ namespace ServiceStack.ServiceModel.Serialization
 
         }
 
+#if NETCF
+        public object PopulateFromMap(object instance, IDictionary<string, string> keyValuePairs)
+        {
+            return PopulateFromMap(instance, keyValuePairs, null);
+        }
+        public object PopulateFromMap(object instance, IDictionary<string, string> keyValuePairs, List<string> ignoredWarningsOnPropertyNames)
+#else
         public object PopulateFromMap(object instance, IDictionary<string, string> keyValuePairs, List<string> ignoredWarningsOnPropertyNames = null)
+#endif
         {
             string propertyName = null;
             string propertyTextValue = null;
@@ -135,6 +143,7 @@ namespace ServiceStack.ServiceModel.Serialization
             catch (Exception ex)
             {
                 var serializationException = new SerializationException("KeyValueDataContractDeserializer: Error converting to type: " + ex.Message, ex);
+#if !NETCF
                 if (propertyName != null) {
                     serializationException.Data.Add("propertyName", propertyName);
                 }
@@ -144,6 +153,7 @@ namespace ServiceStack.ServiceModel.Serialization
                 if (propertySerializerEntry != null && propertySerializerEntry.PropertyType != null) {
                     serializationException.Data.Add("propertyType", propertySerializerEntry.PropertyType);
                 }
+#endif
                 throw serializationException;
             }
         }

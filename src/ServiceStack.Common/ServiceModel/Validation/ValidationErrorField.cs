@@ -1,5 +1,9 @@
 using System;
+#if !NETCF
 using ServiceStack.Common.Extensions;
+#else
+using ServiceStack.Common;
+#endif
 
 namespace ServiceStack.Validation
 {

@@ -2,7 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using NUnit.Framework;
+#if NETCF
+using ServiceStack.Common;
+#else
 using ServiceStack.Common.Extensions;
+#endif
 using ServiceStack.Logging;
 using ServiceStack.Logging.Support.Logging;
 using ServiceStack.Service;
@@ -21,12 +25,13 @@ namespace ServiceStack.WebHost.Endpoints.Tests
     {
         protected string ListeningOn = "http://localhost:";
 
-        ExampleAppHostHttpListener appHost;
-
         protected SyncRestClientTests(int port)
         {
             ListeningOn += port + "/";
         }
+
+#if !NETCF
+        ExampleAppHostHttpListener appHost;
 
         [TestFixtureSetUp]
         public void OnTestFixtureSetUp()
@@ -50,6 +55,9 @@ namespace ServiceStack.WebHost.Endpoints.Tests
             appHost.Dispose();
             appHost = null;
         }
+#else
+        public void Dispose() { }
+#endif
 
         protected abstract IRestClient CreateRestClient();
         //protected virtual IRestClient CreateRestClient()
@@ -120,6 +128,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests
             Assert.That(createdMovie.ImdbId, Is.EqualTo(newMovie.ImdbId));
         }
 
+#if !NETCF
         [Test]
         public void Can_Deserialize_Xml_MovieResponse()
         {
@@ -136,6 +145,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests
                 throw;
             }
         }
+#endif
 
         [TestCase("movies", "movies/")]
         [TestCase("custom-movies", "custom-movies/")]
@@ -271,6 +281,7 @@ namespace ServiceStack.WebHost.Endpoints.Tests
         }
     }
 
+#if !NETCF
     [TestFixture]
     public class XmlSyncRestClientTests : SyncRestClientTests
     {
@@ -284,4 +295,5 @@ namespace ServiceStack.WebHost.Endpoints.Tests
             return new XmlServiceClient(ListeningOn);
         }
     }
+#endif
 }

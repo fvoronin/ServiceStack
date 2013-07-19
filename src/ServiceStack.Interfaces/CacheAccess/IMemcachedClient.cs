@@ -28,14 +28,15 @@ namespace ServiceStack.CacheAccess
 		/// <param name="keys">The keys.</param>
 		void RemoveAll(IEnumerable<string> keys);
 
-		/// <summary>
-		/// Retrieves the specified item from the cache.
-		/// </summary>
-		/// <param ICTname="key">The identifier for the item to retrieve.</param>
-		/// <returns>
-		/// The retrieved item, or <value>null</value> if the key was not found.
-		/// </returns>
-		object Get(string key);
+	    /// <summary>
+	    /// Retrieves the specified item from the cache.
+	    /// </summary>
+	    /// <param ICTname="key">The identifier for the item to retrieve.</param>
+        /// <param name="key">The identifier for the item to retrieve.</param>
+	    /// <returns>
+	    /// The retrieved item, or <value>null</value> if the key was not found.
+	    /// </returns>
+	    object Get(string key);
 		object Get(string key, out ulong lastModifiedValue);
 
 		/// <summary>

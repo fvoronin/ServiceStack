@@ -7,7 +7,7 @@
     <ProjectGuid>{E073CA72-ECB0-4ED8-BCA9-744180E4D49D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceStack.Common.Compact</RootNamespace>
+    <RootNamespace>ServiceStack.Common</RootNamespace>
     <AssemblyName>ServiceStack.Common.Compact</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
@@ -67,21 +67,6 @@
     </Compile>
     <Compile Include="..\ServiceStack.Common\DictionaryExtensions.cs">
       <Link>DictionaryExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ServiceStack.Common\Extensions\AssertExtensions.cs">
-      <Link>Extensions\AssertExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ServiceStack.Common\Extensions\ByteArrayExtensions.cs">
-      <Link>Extensions\ByteArrayExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ServiceStack.Common\Extensions\CollectionExtensions.cs">
-      <Link>Extensions\CollectionExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ServiceStack.Common\Extensions\DictionaryExtensions.cs">
-      <Link>Extensions\DictionaryExtensions.cs</Link>
-    </Compile>
-    <Compile Include="..\ServiceStack.Common\Extensions\StringExtensions.cs">
-      <Link>Extensions\StringExtensions.cs</Link>
     </Compile>
     <Compile Include="..\ServiceStack.Common\Net30\ConcurrentDictionary.cs">
       <Link>Net30\ConcurrentDictionary.cs</Link>
@@ -185,11 +170,53 @@
     <Compile Include="..\ServiceStack.Common\EnumExtensions.cs">
       <Link>EnumExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\ServiceStack.Common\Extensions\EnumerableExtensions.cs">
-      <Link>Extensions\EnumerableExtensions.cs</Link>
+    <Compile Include="..\ServiceStack.Common\IntExtensions.cs">
+      <Link>IntExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\ClientFactory.cs">
+      <Link>Messaging\ClientFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\IMessageHandler.cs">
+      <Link>Messaging\IMessageHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\IMessageHandlerDisposer.cs">
+      <Link>Messaging\IMessageHandlerDisposer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\IMessageHandlerFactory.cs">
+      <Link>Messaging\IMessageHandlerFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\InMemoryMessageQueueClient.cs">
+      <Link>Messaging\InMemoryMessageQueueClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\InMemoryTransientMessageFactory.cs">
+      <Link>Messaging\InMemoryTransientMessageFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\InMemoryTransientMessageService.cs">
+      <Link>Messaging\InMemoryTransientMessageService.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\MessageExtensions.cs">
+      <Link>Messaging\MessageExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\MessageHandler.cs">
+      <Link>Messaging\MessageHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\MessageHandlerFactory.cs">
+      <Link>Messaging\MessageHandlerFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\MessageQueueClientFactory.cs">
+      <Link>Messaging\MessageQueueClientFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\Messaging\TransientMessageServiceBase.cs">
+      <Link>Messaging\TransientMessageServiceBase.cs</Link>
     </Compile>
     <Compile Include="..\ServiceStack.Common\RequestContextExtensions.cs">
       <Link>RequestContextExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\JsonServiceClient.cs">
+      <Link>ServiceClient.Web\JsonServiceClient.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceClient.Web\JsvServiceClient.cs">
+      <Link>ServiceClient.Web\JsvServiceClient.cs</Link>
     </Compile>
     <Compile Include="..\ServiceStack.Common\ServiceClient.Web\RouteMember.cs">
       <Link>Web\RouteMember.cs</Link>
@@ -208,6 +235,9 @@
     </Compile>
     <Compile Include="..\ServiceStack.Common\ServiceModel\Serialization\JsonDataContractSerializer.cs">
       <Link>ServiceModel\Serialization\JsonDataContractSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\ServiceStack.Common\ServiceModel\Serialization\StringMapTypeDeserializer.cs">
+      <Link>ServiceModel\Serialization\StringMapTypeDeserializer.cs</Link>
     </Compile>
     <Compile Include="..\ServiceStack.Common\StreamExtensions.cs">
       <Link>StreamExtensions.cs</Link>

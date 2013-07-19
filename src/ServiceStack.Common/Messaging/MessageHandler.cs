@@ -74,7 +74,15 @@ namespace ServiceStack.Messaging
             }
         }
 
+#if NETCF
+        public int ProcessQueue(IMessageQueueClient mqClient, string queueName)
+        {
+            return ProcessQueue(mqClient, queueName, null);
+        }
+        public int ProcessQueue(IMessageQueueClient mqClient, string queueName, Func<bool> doNext)
+#else
         public int ProcessQueue(IMessageQueueClient mqClient, string queueName, Func<bool> doNext = null)
+#endif
         {
             var msgsProcessed = 0;
             try

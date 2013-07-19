@@ -1,6 +1,9 @@
 using System;
 using NUnit.Framework;
+#if !NETCF
 using ServiceStack.Common.Extensions;
+#endif
+using ServiceStack.Common;
 using ServiceStack.DesignPatterns.Model;
 using ServiceStack.Logging;
 using ServiceStack.Text;

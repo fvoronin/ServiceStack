@@ -15,16 +15,18 @@ namespace ServiceStack.Messaging
              if (endpointUrl.IndexOf("format=") == -1 || endpointUrl.IndexOf("format=json") >= 0)
                  return new JsonServiceClient(endpointUrl);
 
-             if (endpointUrl.IndexOf("format=xml") >= 0)
-                 return new XmlServiceClient(endpointUrl);
-
              if (endpointUrl.IndexOf("format=jsv") >= 0)
                  return new JsvServiceClient(endpointUrl);
 
+#if !NETCF
+             if (endpointUrl.IndexOf("format=xml") >= 0)
+                 return new XmlServiceClient(endpointUrl);
+#endif
+
+#if !(SILVERLIGHT || MONOTOUCH || XBOX || __ANDROID__ || NETCF)
              if (endpointUrl.IndexOf("format=soap11") >= 0)
                  return new Soap11ServiceClient(endpointUrl);
 
-#if !(SILVERLIGHT || MONOTOUCH || XBOX || __ANDROID__)
              if (endpointUrl.IndexOf("format=soap12") >= 0)
                  return new Soap12ServiceClient(endpointUrl);
 #endif

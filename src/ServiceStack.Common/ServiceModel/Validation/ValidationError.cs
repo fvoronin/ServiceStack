@@ -1,7 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+#if !NETCF
 using ServiceStack.Common.Extensions;
+#else
+using ServiceStack.Common;
+#endif
 using ServiceStack.Common.Utils;
 using ServiceStack.ServiceInterface.ServiceModel;
 

@@ -26,7 +26,19 @@ namespace ServiceStack.Messaging
         /// <param name="queueName">The queue to process</param>
         /// <param name="doNext">A predicate on whether to continue processing the next message if any</param>
         /// <returns></returns>
+#if !NETCF
         int ProcessQueue(IMessageQueueClient mqClient, string queueName, Func<bool> doNext = null);
+#else
+        int ProcessQueue(IMessageQueueClient mqClient, string queueName, Func<bool> doNext);
+
+        /// <summary>
+        /// Process messages from a single queue.
+        /// </summary>
+        /// <param name="mqClient"></param>
+        /// <param name="queueName">The queue to process</param>
+        /// <returns></returns>
+        int ProcessQueue(IMessageQueueClient mqClient, string queueName);
+#endif
 
         /// <summary>
         /// Get Current Stats for this Message Handler

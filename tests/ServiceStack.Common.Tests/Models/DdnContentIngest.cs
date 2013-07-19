@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using ServiceStack.Common.Extensions;
+using ServiceStack.Common;
 using ServiceStack.Text;
 
 namespace ServiceStack.Common.Tests.Models
@@ -1098,7 +1099,11 @@ namespace ServiceStack.Common.Tests.Models
 
 		public static string CleanIdValue(string idValue)
 		{
+#if !NETCF
 			return idValue.Trim().ToLowerInvariant().Replace(' ', '_');
+#else
+			return idValue.Trim().ToLower(CultureInfo.InvariantCulture).Replace(' ', '_');
+#endif
 		}
 
 		public static string GetFirstIdValue(string urnString)

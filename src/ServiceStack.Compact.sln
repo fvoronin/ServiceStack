@@ -5,7 +5,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Common.Compact
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Interfaces.Compact", "ServiceStack.Interfaces.Compact\ServiceStack.Interfaces.Compact.csproj", "{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B5462CFC-23C7-4FB0-9006-4B84C3773B81}"
+	ProjectSection(SolutionItems) = preProject
+		SmartDeviceTestRun.testrunConfig = SmartDeviceTestRun.testrunConfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4D72D85A-62F1-4D6C-8030-2AD04CF83190}"
+	ProjectSection(SolutionItems) = preProject
+		ServiceStack.Compact.vsmdi = ServiceStack.Compact.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Common.Tests.Compact", "..\tests\ServiceStack.Common.Tests\ServiceStack.Common.Tests.Compact.csproj", "{440AD3FC-9109-4D09-BCF1-577FCCA27554}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.WebHost.Endpoints.Tests.Compact", "..\tests\ServiceStack.WebHost.Endpoints.Tests\ServiceStack.WebHost.Endpoints.Tests.Compact.csproj", "{254E3833-88FD-4973-AE8C-D3B994E3FB2A}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ServiceStack.Compact.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -19,8 +36,20 @@ Global
 		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C987A1D-8B21-4E4B-BF71-5D6EA83CEFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440AD3FC-9109-4D09-BCF1-577FCCA27554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440AD3FC-9109-4D09-BCF1-577FCCA27554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440AD3FC-9109-4D09-BCF1-577FCCA27554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440AD3FC-9109-4D09-BCF1-577FCCA27554}.Release|Any CPU.Build.0 = Release|Any CPU
+		{254E3833-88FD-4973-AE8C-D3B994E3FB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{254E3833-88FD-4973-AE8C-D3B994E3FB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{254E3833-88FD-4973-AE8C-D3B994E3FB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{254E3833-88FD-4973-AE8C-D3B994E3FB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{440AD3FC-9109-4D09-BCF1-577FCCA27554} = {B5462CFC-23C7-4FB0-9006-4B84C3773B81}
+		{254E3833-88FD-4973-AE8C-D3B994E3FB2A} = {B5462CFC-23C7-4FB0-9006-4B84C3773B81}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+#if !NETCF
 using ServiceStack.Common.Extensions;
+#endif
+using ServiceStack.Common;
 
 namespace ServiceStack.Validation
 {
