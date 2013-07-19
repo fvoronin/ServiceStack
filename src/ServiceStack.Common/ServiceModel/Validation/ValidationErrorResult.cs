@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 #if !NETCF
 using ServiceStack.Common.Extensions;
-#endif
+#else
 using ServiceStack.Common;
+#endif
+
 
 namespace ServiceStack.Validation
 {
