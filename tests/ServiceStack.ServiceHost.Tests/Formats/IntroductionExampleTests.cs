@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Threading;
 using NUnit.Framework;
 using ServiceStack.Text;
 
@@ -29,7 +31,9 @@ namespace ServiceStack.ServiceHost.Tests.Formats
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			this.products = new List<Product> {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            
+            this.products = new List<Product> {
 				new Product("Pen", 1.99m),
 				new Product("Glass", 9.99m),
 				new Product("Book", 14.99m),
@@ -37,6 +41,12 @@ namespace ServiceStack.ServiceHost.Tests.Formats
 			};
 			productArgs = new Dictionary<string, object> { { "products", products } };
 		}
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
+        }
 
 		[Test]
 		public void Basic_Razor_Example()
@@ -96,7 +106,7 @@ Checkout [this product](/Product/Details/@productId)";
 }
 ";
 
-			var expectedHtml = 
+			var expectedHtml =
 @"<ul>
 <li>Pen: (1.99)</li>
 <li>Glass: (9.99)</li>

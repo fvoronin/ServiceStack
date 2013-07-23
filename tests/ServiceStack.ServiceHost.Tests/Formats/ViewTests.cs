@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
 using ServiceStack.Common.Utils;
 using ServiceStack.Common.Web;
@@ -34,9 +36,17 @@ namespace ServiceStack.ServiceHost.Tests.Formats
 			response = JsonSerializer.DeserializeFromString<CustomerDetailsResponse>(json);
 		}
 
+	    [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+	    {
+	        Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
+	    }
+
 		[SetUp]
 		public void OnBeforeEachTest()
 		{
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+
 			appHost = new AppHost();
 			markdownFormat = new MarkdownFormat {
                 VirtualPathProvider = appHost.VirtualPathProvider

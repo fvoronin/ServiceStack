@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
 using NUnit.Framework;
 using ServiceStack.Razor;
 using ServiceStack.ServiceHost.Tests.Formats;
@@ -32,7 +34,9 @@ namespace ServiceStack.ServiceHost.Tests.Formats_Razor
 		[TestFixtureSetUp]
 		public void TestFixtureSetUp()
 		{
-			this.products = new List<Product> {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            
+            this.products = new List<Product> {
 				new Product("Pen", 1.99m),
 				new Product("Glass", 9.99m),
 				new Product("Book", 14.99m),
@@ -40,7 +44,13 @@ namespace ServiceStack.ServiceHost.Tests.Formats_Razor
 			};
 			productArgs = new { products = products };
 		}
-        
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
+        }
+
         [SetUp]
         public void SetUp()
         {

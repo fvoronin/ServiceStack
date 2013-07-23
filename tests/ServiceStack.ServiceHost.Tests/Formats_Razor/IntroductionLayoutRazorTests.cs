@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
 using ServiceStack.Html;
 using ServiceStack.Razor;
@@ -50,11 +52,19 @@ namespace ServiceStack.ServiceHost.Tests.Formats_Razor
         [SetUp]
         public void OnBeforeEachTest()
         {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+
             RazorFormat.Instance = null;
             base.RazorFormat = new RazorFormat
             {
                 VirtualPathProvider = new InMemoryVirtualPathProvider(new BasicAppHost()),
             }.Init();
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Test]

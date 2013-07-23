@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Threading;
 using NUnit.Framework;
 using ServiceStack.Html;
 using ServiceStack.Markdown;
@@ -50,10 +52,18 @@ namespace ServiceStack.ServiceHost.Tests.Formats
 	    [SetUp]
 	    public void SetUp()
 	    {
-	        EndpointHost.VirtualPathProvider = pathProvider = new InMemoryVirtualPathProvider(new BasicAppHost());
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+            
+            EndpointHost.VirtualPathProvider = pathProvider = new InMemoryVirtualPathProvider(new BasicAppHost());
             markdownFormat = new MarkdownFormat {
                 VirtualPathProvider = pathProvider,
             };
+        }
+
+        [TestFixtureTearDown]
+        public void TestFixtureTearDown()
+        {
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
 		[Test]
