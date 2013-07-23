@@ -344,7 +344,6 @@ namespace ServiceStack.ServiceClient.Web
                 result[propertyName.ToCamelCase()] = new PropertyRouteMember(propertyInfo);
             }
 
-#if !NETCF //TODO NETCF add JsConfig support
 			if (JsConfig.IncludePublicFields)
 			{
                 foreach (var fieldInfo in requestType.GetPublicFields())
@@ -357,7 +356,7 @@ namespace ServiceStack.ServiceClient.Web
 				}
 
 			}
-#endif
+
             return result;
         }
 
