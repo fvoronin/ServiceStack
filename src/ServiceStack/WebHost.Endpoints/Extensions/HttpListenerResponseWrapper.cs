@@ -63,6 +63,9 @@ namespace ServiceStack.WebHost.Endpoints.Extensions
         {
             try
             {
+                if (IsClosed)
+                    return;
+
                 var bOutput = System.Text.Encoding.UTF8.GetBytes(text);
                 response.ContentLength64 = bOutput.Length;
 
